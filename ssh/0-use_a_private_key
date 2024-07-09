@@ -1,5 +1,4 @@
-/bin/bash
-
+#!/usr/bin/env bash
 # SSH into server using private key ~/.ssh/school
 ssh -i ~/.ssh/school ubuntu @8.8.8
 
