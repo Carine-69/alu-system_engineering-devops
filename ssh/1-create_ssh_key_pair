@@ -4,5 +4,5 @@
 ssh-keygen -b 4096 -f ~/.ssh/school -t rsa -N betty
 
 # Ensure correct permissions for the private key
-chmod 600 /root/.ssh/school
+chmod 600 ~/.ssh/school
 
