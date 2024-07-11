@@ -1,2 +1,5 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
+
+# SSH into server using the private key from the new location with user ubuntu
 ssh-keygen -b 4096 -f ~/.ssh/school -t rsa -N betty
+
