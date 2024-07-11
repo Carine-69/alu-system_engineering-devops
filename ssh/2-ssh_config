@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 Host umugabecarine_server
-    HostName 6074-web-01
+    HostName 18.205.22.98
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
