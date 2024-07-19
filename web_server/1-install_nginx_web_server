@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
-#Installing Nginx on Ubuntu
-#Nginx is listening on port 80
-#The GET request should return a page containing "Holberton School"
 
-sudo apt-get update && upgrade
+# Update and upgrade the package lists
+sudo apt-get update && sudo apt-get upgrade -y
+
+# Install Nginx
 sudo apt-get install nginx -y
 
-#Create a directory called html inside your nginx server
-sudo mkdir /var/www/html
-#Create a file inside that directory called index.html
-sudo touch /var/www/html/index.html
-#Display your message then
-sudo echo "Holberton School" > /var/www/html/index.html
+# Create the index.html file with the required content
+echo "Holberton School" | sudo tee /var/www/html/index.html
+
+# Restart Nginx to apply the changes
 sudo service nginx restart
+
