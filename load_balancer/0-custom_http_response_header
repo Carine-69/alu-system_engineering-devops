@@ -1,39 +1,18 @@
-#!/usr/bin/env bash
-# Script to install Nginx and configure it to add a custom HTTP response header.
+#!/usr/bin/env bashO
 
-# Update package list and install Nginx
-sudo apt update -y
-sudo apt install nginx -y
-
-# Ensure the correct document root directory exists
-sudo mkdir -p /var/www/html
-sudo touch /var/www/html/index.html
-
-# Get the hostname of the server
-HOSTNAME=$(hostname)
-
-# Store configuration content
-new_config="server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-    server_name _;
-
-    # Add custom HTTP response header
-    add_header X-Served-By \"$HOSTNAME\";
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
+#Installing Nginx and configuring it
+sudo apt update -y # update package manager to get latest updates when installing ngi..
+sudo apt install nginx -y # instal nginx
+new_config=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+		root /var/www/html;
+	index index.html index.html index.nginx-debian.html;
+	server_name _;
+	add_header X-Served-By $HOSTNAME;
 }
 "
-
-# Write configuration to Nginx
-echo "$new_config" | sudo tee /etc/nginx/sites-available/default > /dev/null
-
-# Test Nginx configuration for errors
-sudo nginx -t
-
-# Reload Nginx to apply changes
-sudo systemctl reload nginx
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default # change ownership
+echo "$new_config" > /etc/nginx/sites-available/default # overwrite the existing configuration
+sudo service nginx restart # restart the nginx
